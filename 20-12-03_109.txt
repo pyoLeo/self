@@ -1,0 +1,140 @@
+﻿1.set classpath 에 대하여 설명하시오.
+직접 클래스 패스를 고정 시키는 것, 지정해준 명령 프롬프트 창 내에서만 유효하다
+좋은 방법은 아님
+
+2.절대경로와 상대경로에 대하여 설명하시오.
+절대경로
+루트 디렉토리를 시작으로 지정
+상대경로
+현재 디렉토리를 기준으로 지정
+
+3. . 과 .. 의 차이는?
+cd  . 현재 위치한 경로
+cd .. 현재 경로에서 한단계 상위 경로
+4.package의 용도는?
+클래스들을 모아 공간, 접근 방법에서 충돌하지 않도록 한다
+
+5.package 의 기본적인 명명법(이름짓는법)은?
+중복을 피하기 위해 사용하는 것이므로 고유하게(겹치지않게) 만들어야 한다
+
+6.정보은닉에 대하여 설명하시오.
+다른 객체에게 정보를 숨기고 자체 연산만을 통하여 접근을 허용한다
+외부 객체가 특정 객체 함수 직접 접근하여 사용하거나 변경하지 못하므로 유지보수와 소프트웨어 확장 오류 최소화 가능
+
+7.접근제한자 4가지 종류에 대하여 설명하시오.
+public 어디서든 인스턴스 생성이 가능
+protected 패키지로 묶지 않아도 상속 관계라면 접근 가능
+default 동일 패키지로 묶인 클래스 내에서만 인스턴스 생성 가능
+private 클래스 내부에서만 접근 가능
+
+9.class 에서 붙일수 있는 접근 제한자 2개를 설명하고, 해당 접근제한자의 사용 목적은?
+public
+private
+클래스 내부의 정보에 대한 접근 제한
+
+10.가위, 바위, 보 게임 작성하시오.
+import java.util.Scanner;
+public class Game {
+	
+	public void gameStart(int com, int human) {
+		int result = (human - com + 3) % 3;
+		
+		if(com == 1) {
+			System.out.println("컴퓨터 : 가위");
+		}
+		else if(com == 2) {
+			System.out.println("컴퓨터 : 바위");
+		}
+		else
+			System.out.println("컴퓨터 : 보");
+		
+		if(result == 1) {
+			System.out.println("이겼습니다");
+		}
+		else if(result == 2) {
+			System.out.println("졌습니다");
+		}
+		else
+			System.out.println("비겼습니다");
+	}
+	public static void main(String[] args) {
+		
+		int com = (int)(Math.random()*3+1);
+		int human;
+		Game g = new Game();
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("1.가위 2.바위 3.보 \n숫자를 입력하시오 : ");
+		human = sc.nextInt();
+		g.gameStart(com, human);
+		
+	}
+}
+
+11.아래와 같이 계산기 프로그램을 작성하시오.
+==================================
+10 + 9   // 입력을 한칸씩 띄우도록 할것
+10 + 9 = 19
+계속하시겠습니까?
+10 - 7
+10 - 7 = 3
+계속하시겠습니까?
+package cal;
+
+import java.util.Scanner;
+
+public class Cal {
+
+	int n1;
+	int n2;
+	char cal;
+
+	public Cal(int n1, char ch, int n2) {
+		this.n1 = n1;
+		this.n2 = n2;
+		cal = ch;
+	}
+	
+	public void calcul() {
+		if (cal == '+') {
+			System.out.println(n1 + " " + cal + " " + n2 + " = " + (n1+n2));
+		} else if (cal == '-') {
+			System.out.println(n1 + " " + cal + " " + n2 + " = " + (n1-n2));
+		} else if (cal == '*') {
+			System.out.println(n1 + " " + cal + " " + n2 + " = " + (n1*n2));
+		} else if (cal == '/') {
+			System.out.println(n1 + " " + cal + " " + n2 + " = " + (n1/n2));
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int num1;
+		int num2;
+		char ch;
+		int an;
+		Scanner sc = new Scanner(System.in);
+		
+		while(true) {
+		System.out.println("식을 입력하세요 : ");
+		num1 = sc.nextInt();
+		ch = sc.next().charAt(0);
+		num2 = sc.nextInt();
+		Cal c = new Cal(num1, ch, num2);
+		c.calcul();
+		System.out.println("계속 하시겠습니까? 1:네 2:아니오 : ");
+		an = sc.nextInt();
+		if(an == 1) {
+			continue;
+		}
+		else if(an == 2) {
+			System.out.println("종료합니다");
+			break;
+		}
+		else
+			System.out.println("다시 입력하세요 : ");
+			an = sc.next().charAt(0);
+		}
+
+	}
+}

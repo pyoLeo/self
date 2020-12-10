@@ -1,0 +1,122 @@
+﻿1.인스턴스 함수안에 스태틱 변수와 함수가 올수 있는 이유는?
+static변수, 함수는 프로그램 실행과 동시에 생성이 되기 때문에 인스턴스 안에 올 수 있다
+
+2.메소드 오버로딩이란?
+메소드를 이름은 같지만 매개변수(파라미터)의 갯수나 타입이 다르게 여러번 선언하는 것
+
+3.메소드 오버로딩을 적용한 대표적인 함수는?
+println() 메소드는 매개변수 타입에 따라 적절한 원형을 호출한다
+
+4.this 함수에 대하여 설명하시오.
+자기자신의 생성자를 호출함으로써 생성자의 초기화 과정 반복 필요x
+
+5.this란 무엇인가?
+메소드의 인수나 변수를 필드의 인수나 변수와 같은 이름을 붙일때 this는 필드임을 명시하기 위해 사용한다
+
+6.스트링 객체를 생성하는 2가지 방법은?
+.아래의 결과를 예측하고,이유를 설명하시오.
+String str1 = "Simple String";
+String str2 = "Simple String";
+   
+      String str3 = new String("Simple String");
+      String str4 = new String("Simple String");
+   
+      if(str1 == str2)
+         System.out.println("str1과 str2는 동일 인스턴스 참조");
+      else
+         System.out.println("str1과 str2는 다른 인스턴스 참조");
+   
+      if(str3 == str4)
+         System.out.println("str3과 str4는 동일 인스턴스 참조");
+      else
+         System.out.println("str3과 str4는 다른 인스턴스 참조");
+str1과 str2는 동일 인스턴스 참조
+str3과 str4는 다른 인스턴스 참조
+str1과 str2는 힙영역 안에 있는 Simple String 동시에 참조 str3과 str4는 새로운 객체 str3과 str4를 생성하고 각각의 인스턴스를 참조
+
+7.imutable 에 대하여 설명하시오.
+String에 변화를 주어도 기존 String의 값이 변하는 것이 아닌 새로운 String 객체 생성한다.(기존 객체에 변화를 주지 않는다 -> 불변)
+
+8. 사용자로부터 받은 문자열(영문으로)에서 자음과 모음 개수를 계산하는 프로그램을 작성하라.
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int cnt_a=0, cnt_q=0;
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("문자열 입력 : ");
+		String str = sc.nextLine();
+		
+		for(int i = 0; i < str.length(); i++) {
+			if(str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o' || str.charAt(i) == 'u' || str.charAt(i) == 'A' || str.charAt(i) == 'E' || str.charAt(i) == 'O' || str.charAt(i) == 'U') {
+				cnt_a++;
+			}
+			else
+				cnt_q++;
+		}
+		
+		System.out.println("자음 : " + cnt_q + "개 모음 : " + cnt_a + "개");
+	}
+
+
+9. 사용자로부터 키를 입력받아서 표준 체중을 계산한 후에 사용자의 체중과 비교하여 저체중인지, 표준인지, 과체중인지를 판단하는 프로그램을 작성하라. 표준 체중 계산식은 다음을 사용하라.
+표준체중 = ( 키 - 100 ) * 0.9
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int height;
+		int weight;
+		double avg_weight;
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("키 : ");
+		height = sc.nextInt();
+		avg_weight = (height - 100) * 0.9;
+		
+		System.out.print("몸무게 : ");
+		weight = sc.nextInt();
+		
+		if(weight > avg_weight) 
+			System.out.println("과체중");
+		else if(weight == avg_weight)
+			System.out.println("정상");
+		else
+			System.out.println("저체중");
+		
+	}
+
+10. 2와 100 사이에 있는 모든 소수(prime number)를 찾는 프로그램을 작성하라. 주어진 정수 k를 2부터 k-1까지의 숫자로 나누어서 나머지가 0인 것이 하나라도 있으면 소수가 아니다.
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int cnt = 0;
+		
+		System.out.println("2부터 100 중 소수");
+		for(int i = 2; i <= 100; i++) {
+			for(int j = 2; j < i; j++) {
+				if(i % j == 0) {
+					cnt++;
+				}
+			}
+			if(cnt == 0) 
+				System.out.println(i);
+			cnt = 0;
+		}
+	}
+
+
+11.사용자에게 받은 문자열을 역순으로 화면에 출력하는 프로그램을 작성하시오.
+입력:abcde
+출력:edcba
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String str = new String();
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("입력 : ");
+		str = sc.nextLine();
+		System.out.println();
+		
+		System.out.print("출력 : ");
+		for(int i = str.length()-1; i >= 0; i--) {
+			System.out.print(str.charAt(i));
+		}
+
+
